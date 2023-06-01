@@ -26,6 +26,53 @@ Print the characters and its Huffman code.
 Developed by : KRISHNA PRAKAASH D M
 Registration Number : 212221230052
 ```
+Create the input String
+```
+string = 'string='KRISHNA_212221230052''
+```
+Create tree nodes
+```
+class Nodetree(object):
+    def __init__(self,left=None,right=None):
+        self.left= left
+        self.right =right
+    def children(self):
+        return(self.left, self.right) 
+  ```
+  Main function to implement huffman coding
+```
+def huffman_coding(Tree,left =True,binString=''):
+    if type(Tree) is str:
+        return {Tree : binString}
+    (l, r) = Tree.children()
+    d = dict()
+    d.update(huffman_coding(l,True,binString+ '0'))
+    d.update(huffman_coding(r,False,binString+ '1'))
+    return d
+
+
+```
+Calculate frequency of occurrence
+```
+nodes = freq
+while len(nodes) >1:
+    (key1 , value1 ) = nodes[-1]
+    (key2 , value2 ) = nodes[-2]
+    nodes = nodes[:-2]
+    Tree = Nodetree(key1,key2)
+    nodes.append((Tree , value1+value2))
+    nodes = sorted(nodes, key =lambda x:x[1],reverse =True)
+
+```
+Print the characters and its huffmancode
+```
+huffman = huffman_coding(nodes[0][0])
+print('character | Huffman code')
+print('-------------------------')
+for (char , frequency) in freq:
+    print(' %-4r | %12s ' %(char, huffman[char]))
+
+```
 
 
     
